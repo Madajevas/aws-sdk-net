@@ -8,8 +8,8 @@
     <DefineConstants Condition="'$(TargetFramework)' == 'net8.0'">$(DefineConstants);AWS_ASYNC_ENUMERABLES_API</DefineConstants>
     <DebugType>portable</DebugType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyName>AWSSDK.Core</AssemblyName>
-    <PackageId>AWSSDK.Core</PackageId>
+    <AssemblyName>AWSSDK.Core.NetStandard</AssemblyName>
+    <PackageId>AWSSDK.Core.NetStandard</PackageId>
     
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
