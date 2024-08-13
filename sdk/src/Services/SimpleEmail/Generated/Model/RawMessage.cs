@@ -34,7 +34,7 @@ namespace Amazon.SimpleEmail.Model
     /// </summary>
     public partial class RawMessage
     {
-        private MemoryStream _data;
+        private Stream _data;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -45,7 +45,7 @@ namespace Amazon.SimpleEmail.Model
         /// Instantiates RawMessage with the parameterized properties
         /// </summary>
         /// <param name="data">The raw data of the message. This data needs to base64-encoded if you are accessing Amazon SES directly through the HTTPS interface. If you are accessing Amazon SES using an Amazon Web Services SDK, the SDK takes care of the base 64-encoding for you. In all cases, the client must ensure that the message format complies with Internet email standards regarding email header fields, MIME types, and MIME encoding. The To:, CC:, and BCC: headers in the raw message can contain a group list. If you are using <c>SendRawEmail</c> with sending authorization, you can include X-headers in the raw message to specify the "Source," "From," and "Return-Path" addresses. For more information, see the documentation for <c>SendRawEmail</c>.  <important> Do not include these X-headers in the DKIM signature, because they are removed by Amazon SES before sending the email. </important> For more information, go to the <a href="https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html">Amazon SES Developer Guide</a>.</param>
-        public RawMessage(MemoryStream data)
+        public RawMessage(Stream data)
         {
             _data = data;
         }
@@ -81,7 +81,7 @@ namespace Amazon.SimpleEmail.Model
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
-        public MemoryStream Data
+        public Stream Data
         {
             get { return this._data; }
             set { this._data = value; }

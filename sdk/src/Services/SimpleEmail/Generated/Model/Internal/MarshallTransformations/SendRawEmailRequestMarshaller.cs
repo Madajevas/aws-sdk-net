@@ -80,7 +80,7 @@ namespace Amazon.SimpleEmail.Model.Internal.MarshallTransformations
                 {
                     if(publicRequest.RawMessage.IsSetData())
                     {
-                        request.Parameters.Add("RawMessage" + "." + "Data", StringUtils.FromMemoryStream(publicRequest.RawMessage.Data));
+                        request.Parameters.Add("RawMessage" + "." + "Data", StringUtils.FromStream(publicRequest.RawMessage.Data));
                     }
                 }
                 if(publicRequest.IsSetReturnPathArn())

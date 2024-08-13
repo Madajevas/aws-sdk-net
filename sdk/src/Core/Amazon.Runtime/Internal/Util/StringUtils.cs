@@ -52,6 +52,21 @@ namespace Amazon.Runtime.Internal.Util
             return Convert.ToBase64String(value.ToArray());
         }
 
+        public static string FromStream(Stream value)
+        {
+            byte[] buffer = new byte[4 * 1024];
+            var builder = new StringBuilder();
+            int numRead;
+
+            do
+            {
+                numRead = value.Read(buffer, 0, buffer.Length);
+                builder.Append(Convert.ToBase64String(buffer, 0, numRead));
+            } while (numRead == 1024);
+
+            return builder.ToString();
+        }
+
         public static string FromInt(int value)
         {
             return value.ToString(CultureInfo.InvariantCulture);

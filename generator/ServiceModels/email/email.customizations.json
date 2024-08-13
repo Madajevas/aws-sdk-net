@@ -5,6 +5,14 @@
         "ListIdentities",
         "ListVerifiedEmailAddresses"
     ],
+    "dataTypeSwap": {
+        "RawMessage": {
+            "Data": {
+                "Type": "Stream",
+                "Marshaller": "StringUtils.FromStream"
+            }
+        }
+    },
     "shapeModifiers": {
         "MessageDsn": {
             "backwardsCompatibleDateTimeProperties": [
