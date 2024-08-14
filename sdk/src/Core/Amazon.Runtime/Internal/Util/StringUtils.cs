@@ -54,7 +54,7 @@ namespace Amazon.Runtime.Internal.Util
 
         public static string FromStream(Stream value)
         {
-            byte[] buffer = new byte[4 * 1024];
+            byte[] buffer = new byte[3 * 1024]; // must be multiple of 3 for Base64
             var builder = new StringBuilder();
             int numRead;
 
@@ -62,7 +62,7 @@ namespace Amazon.Runtime.Internal.Util
             {
                 numRead = value.Read(buffer, 0, buffer.Length);
                 builder.Append(Convert.ToBase64String(buffer, 0, numRead));
-            } while (numRead == 1024);
+            } while (numRead == buffer.Length);
 
             return builder.ToString();
         }
