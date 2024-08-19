@@ -21,6 +21,7 @@ using System.IO;
 using Amazon.Util;
 using System.Linq;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 
 namespace Amazon.Runtime.Internal.Util
 {
@@ -54,17 +55,19 @@ namespace Amazon.Runtime.Internal.Util
 
         public static string FromStream(Stream value)
         {
-            byte[] buffer = new byte[3 * 1024]; // must be multiple of 3 for Base64
-            var builder = new StringBuilder();
-            int numRead;
-
-            do
+            static IEnumerable<string> GetParts(Stream stream)
             {
-                numRead = value.Read(buffer, 0, buffer.Length);
-                builder.Append(Convert.ToBase64String(buffer, 0, numRead));
-            } while (numRead == buffer.Length);
+                byte[] buffer = new byte[12 * 1024]; // must be multiple of 3 for Base64
+                int numRead;
 
-            return builder.ToString();
+                do
+                {
+                    numRead = stream.Read(buffer, 0, buffer.Length);
+                    yield return Convert.ToBase64String(buffer, 0, numRead);
+                } while (numRead == buffer.Length);
+            }
+
+            return string.Concat(GetParts(value));
         }
 
         public static string FromInt(int value)
